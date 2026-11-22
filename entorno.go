@@ -6,7 +6,7 @@ type Entorno struct {
 	ambitos []map[string]Dato
 }
 
-// 1. Crea el entorno inicializando el ámbito global
+//Crea el entorno inicializando el ámbito global
 func NuevoEntorno() *Entorno {
 	return &Entorno{
 		ambitos: []map[string]Dato{
