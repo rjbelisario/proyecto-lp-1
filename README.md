@@ -6,7 +6,7 @@ Requiere Go 1.22 o posterior. Desde la carpeta que contiene `go.mod`, ejecuta el
 go run .
 ```
 
-`go run calculadora.go` compila únicamente el archivo de la consola. El punto en `go run .` incluye también `evaluador.go`, `tipos.go` y `entorno.go`.
+`go run calculadora.go` compila únicamente la pila. `go run .` incluye todos los archivos del paquete, entre ellos `main.go` y `tipos.go`, donde se define `Dato`.
 
 Para compilar un ejecutable y luego iniciarlo:
 

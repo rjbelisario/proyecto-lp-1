@@ -6,7 +6,7 @@ type Entorno struct {
 	ambitos []map[string]Dato
 }
 
-// 1. Crea el entorno inicializando el ámbito global
+//Crea el entorno inicializando el ámbito global
 func NuevoEntorno() *Entorno {
 	return &Entorno{
 		ambitos: []map[string]Dato{
@@ -19,6 +19,25 @@ func NuevoEntorno() *Entorno {
 func Definir(e *Entorno, nombre string, valor Dato) {
 	actual := len(e.ambitos) - 1
 	e.ambitos[actual][nombre] = valor
+}
+
+func Buscar(e *Entorno, nombre string) (Dato, bool) {
+	for i := len(e.ambitos) - 1; i >= 0; i-- {
+		if valor, existe := e.ambitos[i][nombre]; existe {
+			return valor, true
+		}
+	}
+	return Dato{}, false
+}
+
+func VariablesActivas(e *Entorno) map[string]Dato {
+	variables := make(map[string]Dato)
+	for _, ambito := range e.ambitos {
+		for nombre, valor := range ambito {
+			variables[nombre] = valor
+		}
+	}
+	return variables
 }
 
 //Abre un nuevo bloque local (comando: begin)
