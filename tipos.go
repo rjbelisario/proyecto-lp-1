@@ -27,6 +27,50 @@ type Dato struct {
 	Texto    string //sirve para los strings y las variables
 }
 
+func (d Dato) String() string {
+	switch d.Tipo {
+	case TipoInt:
+		return strconv.Itoa(d.Entero)
+	case TipoFloat:
+		return strconv.FormatFloat(d.Decimal, 'g', -1, 64)
+	case TipoBool:
+		return strconv.FormatBool(d.Booleano)
+	case TipoString:
+		return strconv.Quote(d.Texto)
+	default:
+		return d.Texto
+	}
+}
+
+type Operador string
+
+const (
+	opAsignar     Operador = "="
+	opSumar       Operador = "+"
+	opRestar      Operador = "-"
+	opMultiplicar Operador = "*"
+	opDividir     Operador = "/"
+	opIgual       Operador = "=="
+	opDistinto    Operador = "!="
+	opMenor       Operador = "<"
+	opMayor       Operador = ">"
+)
+
+type tokenRPN struct {
+	operador Operador
+	dato     Dato
+}
+
+func leerToken(texto string) (tokenRPN, error) {
+	operador := Operador(texto)
+	switch operador {
+	case opAsignar, opSumar, opRestar, opMultiplicar, opDividir, opIgual, opDistinto, opMenor, opMayor:
+		return tokenRPN{operador: operador}, nil
+	}
+	dato, err := ConverToken(texto)
+	return tokenRPN{dato: dato}, err
+}
+
 func ConverToken(token string) (Dato, error) {
 	//evaluar si es bool
 	if token == "true" || token == "false" {
