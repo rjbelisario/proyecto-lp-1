@@ -6,6 +6,9 @@ import (
 )
 
 func Evaluar(linea string, pila *Pila, entorno *Entorno) (Dato, error) {
+	defer func() {
+		pila.elementos = pila.elementos[:0]
+	}()
 	for _, texto := range strings.Fields(linea) {
 		token, err := leerToken(texto)
 		if err != nil {
