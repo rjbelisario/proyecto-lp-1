@@ -1,0 +1,52 @@
+5 2 +
+7
+10 2 -
+8
+3 4 *
+12
+5 2 /
+2.5
+2.5 2 +
+4.5
+2 2 ==
+true
+2 3 !=
+true
+2 3 <
+true
+3 2 >
+true
+true false ==
+false
+5 true +
+Error: error de tipos: + requiere dos números
+5 0 /
+Error: división por cero
+1 +
+Error: error: pila insuficiente (stack underflow)
+@
+Error: token invalido: @
+10 2 -
+8
+x 10 =
+10
+x 5 + 2 *
+30
+x 5 2 + =
+7
+vars
+x = 7
+begin
+x 20 =
+20
+y 3 =
+3
+vars
+x = 20
+y = 3
+end
+vars
+x = 7
+y
+Error: variable no definida: y
+exit
